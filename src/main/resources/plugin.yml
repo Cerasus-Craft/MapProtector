@@ -8,3 +8,5 @@ commands:
     usage: /<command> <on|off>
     aliases:
       - mp
+depend:
+  - ServerMessager

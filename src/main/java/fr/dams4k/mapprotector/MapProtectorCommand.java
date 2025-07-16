@@ -1,5 +1,6 @@
 package fr.dams4k.mapprotector;
 
+import fr.dams4k.servermessager.ServerMessager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,9 +19,11 @@ public class MapProtectorCommand implements CommandExecutor {
         switch (args[0].toLowerCase(Locale.ROOT)) {
             case "on":
                 MapProtector.PROTECTED_CONFIG.protectMap(player.getWorld());
+                ServerMessager.sendPositiveMessage(sender, "This world is now protected");
                 break;
             case "off":
                 MapProtector.PROTECTED_CONFIG.unprotectMap(player.getWorld());
+                ServerMessager.sendNegativeMessage(sender, "This world is no longer protected");
                 break;
         }
 

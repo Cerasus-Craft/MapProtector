@@ -1,5 +1,6 @@
 package fr.dams4k.mapprotector;
 
+import fr.dams4k.servermessager.ServerMessager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,7 +19,8 @@ public class MapProtector extends JavaPlugin {
         sender.sendMessage("[MapProtector] Plugin enabled");
 
         this.getCommand("mapprotector").setExecutor(new MapProtectorCommand());
-
         this.getServer().getPluginManager().registerEvents(new MapProtectorListener(), this);
+
+        ServerMessager.init(this);
     }
 }

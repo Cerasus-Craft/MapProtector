@@ -18,8 +18,7 @@ public class MapProtector extends JavaPlugin {
         PROTECTED_CONFIG = new ProtectedMapsConfig();
         MESSAGER = new ServerMessager(this);
 
-        ConsoleCommandSender sender = Bukkit.getConsoleSender();
-        sender.sendMessage("[MapProtector] Plugin enabled");
+        MESSAGER.sendPositiveMessage(Bukkit.getConsoleSender(), "Plugin enabled");
 
         this.getCommand("mapprotector").setExecutor(new MapProtectorCommand());
         this.getServer().getPluginManager().registerEvents(new MapProtectorListener(), this);

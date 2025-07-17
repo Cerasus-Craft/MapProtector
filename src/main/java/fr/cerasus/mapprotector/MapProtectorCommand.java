@@ -1,5 +1,6 @@
 package fr.cerasus.mapprotector;
 
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,17 +16,36 @@ public class MapProtectorCommand implements CommandExecutor {
         if (!(sender instanceof Player)) return true;
 
         Player player = (Player) sender;
+        World world = player.getWorld();
         switch (args[0].toLowerCase(Locale.ROOT)) {
             case "on":
-                MapProtector.PROTECTED_CONFIG.protectMap(player.getWorld());
-                MapProtector.MESSAGER.sendPositiveMessage(sender, "This world is now protected");
+                protectWorld(sender, world);
                 break;
             case "off":
-                MapProtector.PROTECTED_CONFIG.unprotectMap(player.getWorld());
-                MapProtector.MESSAGER.sendNegativeMessage(sender, "This world is no longer protected");
+                unprotectWorld(sender, world);
                 break;
         }
 
         return true;
+    }
+
+    public void protectWorld(CommandSender sender, World world) {
+        if (MapProtector.PROTECTED_CONFIG.isProtected(world)) {
+            MapProtector.MESSAGER.sendWarningMessage(sender, "This world is already protected");
+            return;
+        }
+
+        MapProtector.PROTECTED_CONFIG.protectMap(world);
+        MapProtector.MESSAGER.sendPositiveMessage(sender, "This world is now protected");
+    }
+
+    public void unprotectWorld(CommandSender sender, World world) {
+        if (!MapProtector.PROTECTED_CONFIG.isProtected(world)) {
+            MapProtector.MESSAGER.sendWarningMessage(sender, "This world is already not protected");
+            return;
+        }
+
+        MapProtector.PROTECTED_CONFIG.unprotectMap(world);
+        MapProtector.MESSAGER.sendNegativeMessage(sender, "This world is no longer protected");
     }
 }

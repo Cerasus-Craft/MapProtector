@@ -38,7 +38,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Dams4K Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Dams4K/MapProtector</url>
+            <url>https://maven.pkg.github.com/Cerasus-Craft/MapProtector</url>
         </repository>
     </distributionManagement>
 </project>

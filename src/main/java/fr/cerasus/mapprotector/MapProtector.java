@@ -1,6 +1,6 @@
 package fr.cerasus.mapprotector;
 
-import fr.dams4k.servermessager.ServerMessager;
+import fr.cerasus.servermessager.ServerMessager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,6 +1,6 @@
 package fr.cerasus.mapprotector;
 
-import fr.cerasus.servermessager.ServerMessager;
+import fr.cerasus.servermessenger.ServerMessenger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -9,13 +9,13 @@ public class MapProtector extends JavaPlugin {
 
     public static ProtectedMapsConfig PROTECTED_CONFIG;
 
-    public static ServerMessager MESSENGER;
+    public static ServerMessenger MESSENGER;
 
     @Override
     public void onEnable() {
         INSTANCE = this;
         PROTECTED_CONFIG = new ProtectedMapsConfig();
-        MESSENGER = new ServerMessager(this);
+        MESSENGER = new ServerMessenger(this);
 
         MESSENGER.sendPositiveMessage(Bukkit.getConsoleSender(), "Plugin enabled");
 

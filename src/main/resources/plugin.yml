@@ -9,4 +9,4 @@ commands:
     aliases:
       - mp
 depend:
-  - ServerMessager
+  - ServerMessenger

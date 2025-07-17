@@ -1,11 +1,14 @@
 package fr.cerasus.mapprotector;
 
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 public class MapProtectorListener implements Listener {
@@ -27,5 +30,16 @@ public class MapProtectorListener implements Listener {
         if (!MapProtector.PROTECTED_CONFIG.isProtected(world)) return;
 
         event.setCancelled(!block.hasMetadata(MP_METADATA_KEY));
+    }
+
+    @EventHandler
+    public void onBlockUproot(PlayerInteractEvent event) {
+        Block block = event.getClickedBlock();
+        World world = block.getWorld();
+        if (!MapProtector.PROTECTED_CONFIG.isProtected(world)) return;
+
+        if (event.getAction() == Action.PHYSICAL && event.getClickedBlock().getType() == Material.SOIL) {
+            event.setCancelled(true);
+        }
     }
 }

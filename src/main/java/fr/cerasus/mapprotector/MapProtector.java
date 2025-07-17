@@ -9,15 +9,15 @@ public class MapProtector extends JavaPlugin {
 
     public static ProtectedMapsConfig PROTECTED_CONFIG;
 
-    public static ServerMessager MESSAGER;
+    public static ServerMessager MESSENGER;
 
     @Override
     public void onEnable() {
         INSTANCE = this;
         PROTECTED_CONFIG = new ProtectedMapsConfig();
-        MESSAGER = new ServerMessager(this);
+        MESSENGER = new ServerMessager(this);
 
-        MESSAGER.sendPositiveMessage(Bukkit.getConsoleSender(), "Plugin enabled");
+        MESSENGER.sendPositiveMessage(Bukkit.getConsoleSender(), "Plugin enabled");
 
         this.getCommand("mapprotector").setExecutor(new MapProtectorCommand());
         this.getServer().getPluginManager().registerEvents(new MapProtectorListener(), this);

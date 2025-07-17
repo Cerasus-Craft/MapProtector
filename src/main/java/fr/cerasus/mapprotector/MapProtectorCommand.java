@@ -31,21 +31,21 @@ public class MapProtectorCommand implements CommandExecutor {
 
     public void protectWorld(CommandSender sender, World world) {
         if (MapProtector.PROTECTED_CONFIG.isProtected(world)) {
-            MapProtector.MESSAGER.sendWarningMessage(sender, "This world is already protected");
+            MapProtector.MESSENGER.sendWarningMessage(sender, "This world is already protected");
             return;
         }
 
         MapProtector.PROTECTED_CONFIG.protectMap(world);
-        MapProtector.MESSAGER.sendPositiveMessage(sender, "This world is now protected");
+        MapProtector.MESSENGER.sendPositiveMessage(sender, "This world is now protected");
     }
 
     public void unprotectWorld(CommandSender sender, World world) {
         if (!MapProtector.PROTECTED_CONFIG.isProtected(world)) {
-            MapProtector.MESSAGER.sendWarningMessage(sender, "This world is already not protected");
+            MapProtector.MESSENGER.sendWarningMessage(sender, "This world is already not protected");
             return;
         }
 
         MapProtector.PROTECTED_CONFIG.unprotectMap(world);
-        MapProtector.MESSAGER.sendNegativeMessage(sender, "This world is no longer protected");
+        MapProtector.MESSENGER.sendNegativeMessage(sender, "This world is no longer protected");
     }
 }

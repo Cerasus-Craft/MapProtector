@@ -1,5 +1,5 @@
 name: MapProtector
-main: fr.dams4k.mapprotector.MapProtector
+main: fr.cerasus.mapprotector.MapProtector
 author: Dams4K
 version: 1.0.0
 commands:

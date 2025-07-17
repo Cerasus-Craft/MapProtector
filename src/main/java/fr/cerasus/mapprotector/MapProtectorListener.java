@@ -1,4 +1,4 @@
-package fr.dams4k.mapprotector;
+package fr.cerasus.mapprotector;
 
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.LazyMetadataValue;
 
 public class MapProtectorListener implements Listener {
     public static final String MP_METADATA_KEY = "mpPlayer";

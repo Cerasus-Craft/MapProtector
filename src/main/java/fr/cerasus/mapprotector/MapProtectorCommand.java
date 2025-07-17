@@ -1,6 +1,5 @@
-package fr.dams4k.mapprotector;
+package fr.cerasus.mapprotector;
 
-import fr.dams4k.servermessager.ServerMessager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

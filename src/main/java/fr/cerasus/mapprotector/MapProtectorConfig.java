@@ -1,4 +1,4 @@
-package fr.dams4k.mapprotector;
+package fr.cerasus.mapprotector;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

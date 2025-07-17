@@ -1,8 +1,7 @@
-package fr.dams4k.mapprotector;
+package fr.cerasus.mapprotector;
 
 import fr.dams4k.servermessager.ServerMessager;
 import org.bukkit.Bukkit;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MapProtector extends JavaPlugin {

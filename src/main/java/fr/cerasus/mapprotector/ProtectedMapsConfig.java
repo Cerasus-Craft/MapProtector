@@ -3,6 +3,7 @@ package fr.cerasus.mapprotector;
 import org.bukkit.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProtectedMapsConfig extends MapProtectorConfig {
@@ -15,16 +16,16 @@ public class ProtectedMapsConfig extends MapProtectorConfig {
     }
 
     public void protectMap(World world) {
-        String worldName = world.getName();
-        if (worldsName.contains(worldName)) return;
+        if (isProtected(world)) return;
 
-        worldsName.add(worldName);
+        worldsName.add(world.getName());
         config.set(WORLDS_NAME_PATH, worldsName);
         save();
     }
 
     public void unprotectMap(World world) {
-        worldsName.removeIf(e -> e.equals(world.getName()));
+        worldsName.removeIf(word -> word.equals(world.getName()));
+        config.set(WORLDS_NAME_PATH, worldsName);
         save();
     }
 

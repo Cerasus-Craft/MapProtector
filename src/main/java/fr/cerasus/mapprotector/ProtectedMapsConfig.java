@@ -15,13 +15,16 @@ public class ProtectedMapsConfig extends MapProtectorConfig {
     }
 
     public void protectMap(World world) {
-        worldsName.add(world.getName());
+        String worldName = world.getName();
+        if (worldsName.contains(worldName)) return;
+
+        worldsName.add(worldName);
         config.set(WORLDS_NAME_PATH, worldsName);
         save();
     }
 
     public void unprotectMap(World world) {
-        worldsName.remove(world.getName());
+        worldsName.removeIf(e -> e.equals(world.getName()));
         save();
     }
 

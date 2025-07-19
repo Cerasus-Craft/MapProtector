@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class MapProtectorCommand implements CCommand {
+public class MapProtectorCommand implements CCommand<MapProtectorCommand.SubCommand> {
     public enum SubCommand implements SubCommandEnum {
         ON(ci -> protectWorld(ci.sender, ci.world)),
         OFF(ci -> unprotectWorld(ci.sender, ci.world));
@@ -34,7 +34,7 @@ public class MapProtectorCommand implements CCommand {
     @Override
     public boolean emptyCallback(CallbackInfo ci) {
         String worldStatus = MapProtector.PROTECTED_CONFIG.isProtected(ci.world) ? "protected" : "unprotected";
-        MapProtector.MESSENGER.sendWarningMessage(ci.sender, String.format("This world is currently %s", worldStatus));
+        MapProtector.MESSENGER.sendNeutralMessage(ci.sender, String.format("This world is currently %s", worldStatus));
         return true;
     }
 

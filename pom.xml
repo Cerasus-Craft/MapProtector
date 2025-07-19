@@ -15,7 +15,7 @@
         </repository>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/Cerasus-Craft/ServerMessenger</url>
+            <url>https://maven.pkg.github.com/Cerasus-Craft/*</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

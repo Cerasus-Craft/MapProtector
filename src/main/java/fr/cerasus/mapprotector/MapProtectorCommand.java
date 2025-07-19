@@ -1,35 +1,44 @@
 package fr.cerasus.mapprotector;
 
+import fr.cerasus.cerasuscommands.*;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
-public class MapProtectorCommand implements CommandExecutor {
+public class MapProtectorCommand implements CCommand {
+    public enum SubCommand implements SubCommandEnum {
+        ON(ci -> protectWorld(ci.sender, ci.world)),
+        OFF(ci -> unprotectWorld(ci.sender, ci.world));
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length < 1) return true;
-        if (!(sender instanceof Player)) return true;
+        CommandCallback callback;
 
-        Player player = (Player) sender;
-        World world = player.getWorld();
-        switch (args[0].toLowerCase(Locale.ROOT)) {
-            case "on":
-                protectWorld(sender, world);
-                break;
-            case "off":
-                unprotectWorld(sender, world);
-                break;
+        SubCommand(CommandCallback callback) {
+            this.callback = callback;
         }
 
+        @Override
+        public CommandCallback getCallback() {
+            return callback;
+        }
+    };
+
+    @Override
+    public boolean emptyCallback(CallbackInfo ci) {
+        String worldStatus = MapProtector.PROTECTED_CONFIG.isProtected(ci.world) ? "protected" : "unprotected";
+        MapProtector.MESSENGER.sendWarningMessage(ci.sender, String.format("This world is currently %s", worldStatus));
         return true;
     }
 
-    public void protectWorld(CommandSender sender, World world) {
+    public static void protectWorld(CommandSender sender, World world) {
         if (MapProtector.PROTECTED_CONFIG.isProtected(world)) {
             MapProtector.MESSENGER.sendWarningMessage(sender, "This world is already protected");
             return;
@@ -39,7 +48,7 @@ public class MapProtectorCommand implements CommandExecutor {
         MapProtector.MESSENGER.sendPositiveMessage(sender, "This world is now protected");
     }
 
-    public void unprotectWorld(CommandSender sender, World world) {
+    public static void unprotectWorld(CommandSender sender, World world) {
         if (!MapProtector.PROTECTED_CONFIG.isProtected(world)) {
             MapProtector.MESSENGER.sendWarningMessage(sender, "This world is already not protected");
             return;
@@ -47,5 +56,10 @@ public class MapProtectorCommand implements CommandExecutor {
 
         MapProtector.PROTECTED_CONFIG.unprotectMap(world);
         MapProtector.MESSENGER.sendNegativeMessage(sender, "This world is no longer protected");
+    }
+
+    @Override
+    public Class getClazz() {
+        return SubCommand.class;
     }
 }
